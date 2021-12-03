@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
+
 
 public class Day2Exercise {
 
     public static void main(String[] args) throws IOException {
-        List<String> commands = Files.readAllLines(Paths.get("C:\\Users\\Rasmus\\IdeaProjects\\AOC\\Day2\\src\\data.txt"));
+        List<String> commands = Files.readAllLines(Paths.get("./Day2/data/data.txt"));
         final int[] h = {0};
         final int[] aim = {0};
         final int[] d = {0};

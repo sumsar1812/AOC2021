@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Day1 {
     public static void main(String[] args) throws IOException {
-        List<Integer> dataList = Files.readAllLines(Paths.get("C:\\Users\\Rasmus\\IdeaProjects\\AOC\\First\\src\\data.txt"))
+        List<Integer> dataList = Files.readAllLines(Paths.get( "./First/data/data.txt"))
                 .stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
