@@ -17,7 +17,7 @@ public class Day1 {
             int result = 0;
             for (int k = i; k < 3 + i; k++) {
                 if (k >= dataList.size()) {
-                    continue;
+                    break;
                 }
                 result += dataList.get(k);
             }
