@@ -17,4 +17,13 @@ public class BoardNumber {
     public int getNumber() {
         return number;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof BoardNumber) {
+            return ((BoardNumber) o).getNumber() == number;
+        }
+        return false;
+    }
+
 }
