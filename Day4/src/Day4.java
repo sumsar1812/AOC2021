@@ -17,7 +17,10 @@ public class Day4 extends Day {
         BoardLoader boardLoader = new BoardLoader();
         boardLoader.loadBoards(getData().subList(1, getData().size()));
         for (String s : drawnNumbersString.split(",")) {
-            boardLoader.checkBoards(Integer.parseInt(s));
+            if (boardLoader.checkBoards(Integer.parseInt(s))) {
+                System.out.println("All boards has atleast one row/column finished");
+                return;
+            }
         }
     }
 }
