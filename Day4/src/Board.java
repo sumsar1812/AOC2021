@@ -19,7 +19,7 @@ public class Board {
     }
 
     public boolean hasFinishedRow() {
-        if (finished) {
+        if (finished) { //To avoid completing the same boards twice
             return false;
         }
         int line = 0;
@@ -36,7 +36,7 @@ public class Board {
         return false;
     }
     public boolean hasFinishedColumn() {
-        if (finished) {
+        if (finished) { //To avoid completing the same boards twice
             return false;
         }
         int column = 0;
