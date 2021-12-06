@@ -8,11 +8,12 @@ import java.util.stream.IntStream;
 
 public class PointLoader {
     private final static Pattern pointPattern = Pattern.compile("(\\d+),(\\d+) -> (\\d+),(\\d+)");
-    private final List<Line> lines = new ArrayList<>();
+    private final Set<Point> points = new HashSet<>();
+    private final Set<Point> pointDuplicate = new HashSet<>();
     private int overlappingCount = 0;
     public void loadPoints(List<String> data) {
         data.forEach(this::loadPoint);
-        System.out.println(overlappingCount);
+        System.out.println(pointDuplicate.size());
     }
 
     private void loadPoint(String input) {
@@ -24,25 +25,47 @@ public class PointLoader {
             int x2 = Integer.parseInt(matcher.group(3));
             int y2 = Integer.parseInt(matcher.group(4));
             Set<Point> linePoints = new HashSet<>();
-            System.out.println(x1 + " - " + x2);
-            System.out.println(y1 + " - " + y2);
-            System.out.println();
+
+
+            int minX = Math.min(x1, x2);
+            int maxX = Math.max(x1, x2);
+            int minY = Math.min(y1, y2);
+            int maxY = Math.max(y1, y2);
+
             if (x1 != x2 && y1 != y2) {
+                int xDiff = x1 - x2;
+                int yDiff = y1 - y2;
+                System.out.println();
+                System.out.println(minX + "," + minY);
+                System.out.println(maxX + "," + maxY);
+                System.out.println(x1 + "," + x2);
+                System.out.println(y1 + "," + y2);
+                System.out.println("diff: " + xDiff + " - " + yDiff);
+                System.out.println();
+
+                for (int i = 0; i <= Math.abs(yDiff); i++) {
+                    int xTemp = x2 + i * (xDiff < 0 ? -1 : 1);
+                    int yTemp = y2 + i * (yDiff < 0 ? -1 : 1);
+                    Point point = new Point(xTemp, yTemp);
+                    System.out.println(point);
+                    if (points.contains(point)) {
+                        pointDuplicate.add(point);
+                    }
+                    points.add(point);
+                }
                 return;
             }
-            IntStream.rangeClosed(Math.min(x1, x2), Math.max(x1, x2)).forEach(x -> {
-               IntStream.rangeClosed(Math.min(y1, y2), Math.max(y1,y2)).forEach(y -> {
+            IntStream.rangeClosed(minX, maxX).forEach(x -> {
+               IntStream.rangeClosed(minY, maxY).forEach(y -> {
                    Point point = new Point(x, y);
-                   linePoints.add(point);
+                   if (points.contains(point)) {
+                       pointDuplicate.add(point);
+                   }
+                   points.add(point);
+                   //linePoints.add(point);
                });
             });
 
-            Line line = new Line(linePoints);
-
-            if (lines.contains(line)) {
-                overlappingCount++;
-            }
-            lines.add(line);
         }
 
     }

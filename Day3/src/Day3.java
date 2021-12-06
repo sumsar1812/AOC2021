@@ -37,14 +37,8 @@ public class Day3 extends Day{
         List<String> ones = currentData.stream().filter(i -> i.charAt(index) == '1').collect(Collectors.toList());
         List<String> zeros = currentData.stream().filter(i -> i.charAt(index) == '0').collect(Collectors.toList());
         if (ones.size() < zeros.size()) {
-            if (index == currentData.get(0).length() - 1) {
-                return ones.get(0);
-            }
             return getCO2(ones, index + 1);
         } else {
-            if (index == currentData.get(0).length() - 1) {
-                return zeros.get(0);
-            }
             return getCO2(zeros, index + 1);
         }
     }
@@ -56,14 +50,8 @@ public class Day3 extends Day{
         List<String> ones = currentData.stream().filter(i -> i.charAt(index) == '1').collect(Collectors.toList());
         List<String> zeros = currentData.stream().filter(i -> i.charAt(index) == '0').collect(Collectors.toList());
         if (ones.size() >= zeros.size()) {
-            if (index == currentData.get(0).length() - 1) {
-                return ones.get(0);
-            }
             return getOxygen(ones, index + 1);
         } else {
-            if (index == currentData.get(0).length() - 1) {
-                return zeros.get(0);
-            }
             return getOxygen(zeros, index + 1);
         }
     }
