@@ -26,8 +26,10 @@ public class Day3 extends Day{
         }
         gammaRate = Integer.parseInt(gammaBits.toString(), 2);
         epsilonRate = Integer.parseInt(epsilonBits.toString(), 2);
-        int co2 = Integer.parseInt(getCO2OrOxygen(getData(), (l1, l2) -> l1.size() < l2.size(),0), 2);
-        int oxygen = Integer.parseInt(getCO2OrOxygen(getData(), (l1, l2) -> l1.size() >= l2.size(),0), 2);
+        BiPredicate<List<String>, List<String>> co2Predicate = (l1, l2) -> l1.size() < l2.size();
+        BiPredicate<List<String>, List<String>> oxygenPredicate = (l1, l2) -> l1.size() >= l2.size();
+        int co2 = Integer.parseInt(getCO2OrOxygen(getData(), co2Predicate,0), 2);
+        int oxygen = Integer.parseInt(getCO2OrOxygen(getData(), oxygenPredicate,0), 2);
         System.out.println(gammaRate * epsilonRate);
         System.out.println(co2 * oxygen);
     }
@@ -43,7 +45,7 @@ public class Day3 extends Day{
             return getCO2OrOxygen(zeros, predicate, index + 1);
         }
     }
-    
+
     public int getGammaBit(int characterIndex) {
         long ones = getData().stream().filter(i -> i.charAt(characterIndex) == '1').count();
         long needed = (getData().size() / 2) + getData().size() % 2;
