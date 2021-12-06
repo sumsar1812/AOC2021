@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
 public class Day3 extends Day{
@@ -25,38 +26,24 @@ public class Day3 extends Day{
         }
         gammaRate = Integer.parseInt(gammaBits.toString(), 2);
         epsilonRate = Integer.parseInt(epsilonBits.toString(), 2);
-        int co2 = Integer.parseInt(getCO2(getData(), 0), 2);
-        int oxygen = Integer.parseInt(getOxygen(getData(), 0), 2);
+        int co2 = Integer.parseInt(getCO2OrOxygen(getData(), (l1, l2) -> l1.size() < l2.size(),0), 2);
+        int oxygen = Integer.parseInt(getCO2OrOxygen(getData(), (l1, l2) -> l1.size() >= l2.size(),0), 2);
         System.out.println(gammaRate * epsilonRate);
         System.out.println(co2 * oxygen);
     }
-    public String getCO2(List<String> currentData, int index) {
+    public String getCO2OrOxygen(List<String> currentData, BiPredicate<List<String>, List<String>> predicate, int index) {
         if (currentData.size() == 1) {
             return currentData.get(0);
         }
         List<String> ones = currentData.stream().filter(i -> i.charAt(index) == '1').collect(Collectors.toList());
         List<String> zeros = currentData.stream().filter(i -> i.charAt(index) == '0').collect(Collectors.toList());
-        if (ones.size() < zeros.size()) {
-            return getCO2(ones, index + 1);
+        if (predicate.test(ones, zeros)) {
+            return getCO2OrOxygen(ones, predicate, index + 1);
         } else {
-            return getCO2(zeros, index + 1);
+            return getCO2OrOxygen(zeros, predicate, index + 1);
         }
     }
-
-    public String getOxygen(List<String> currentData, int index) {
-        if (currentData.size() == 1) {
-            return currentData.get(0);
-        }
-        List<String> ones = currentData.stream().filter(i -> i.charAt(index) == '1').collect(Collectors.toList());
-        List<String> zeros = currentData.stream().filter(i -> i.charAt(index) == '0').collect(Collectors.toList());
-        if (ones.size() >= zeros.size()) {
-            return getOxygen(ones, index + 1);
-        } else {
-            return getOxygen(zeros, index + 1);
-        }
-    }
-
-
+    
     public int getGammaBit(int characterIndex) {
         long ones = getData().stream().filter(i -> i.charAt(characterIndex) == '1').count();
         long needed = (getData().size() / 2) + getData().size() % 2;
