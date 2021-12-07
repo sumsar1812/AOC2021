@@ -14,8 +14,6 @@ public class DayManager {
     public DayManager(int maxDays, List<Integer> fishList) {
         this.maxDays = maxDays;
         this.fishMap = fishList.stream().collect(Collectors.groupingBy(identity(), counting()));
-        //this.fishMap = fishMap.stream().collect(Collectors.groupingBy(identity(), counting()))
-         //       .entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey, (v1, v2) -> v1));
     }
 
     public void nextDay() {
