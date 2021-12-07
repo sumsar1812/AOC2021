@@ -1,16 +1,22 @@
+import java.io.IOException;
 import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
-public class Day3 extends Day{
+public class Day3 extends AOCPuzzle {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Day3 day3 = new Day3();
         day3.run();
     }
 
-    public Day3() {
+    public Day3() throws IOException {
         super("day3");
+    }
+
+    @Override
+    public String solve() {
+        return null;
     }
 
     @Override

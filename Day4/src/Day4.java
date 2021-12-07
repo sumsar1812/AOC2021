@@ -1,14 +1,19 @@
-import java.util.List;
+import java.io.IOException;
 
-public class Day4 extends Day {
+public class Day4 extends AOCPuzzle {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Day4 day4 = new Day4();
         day4.run();
     }
 
-    public Day4() {
+    public Day4() throws IOException {
         super("day4");
+    }
+
+    @Override
+    public String solve() {
+        return null;
     }
 
     @Override
