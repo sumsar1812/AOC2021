@@ -1,3 +1,4 @@
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -24,8 +25,6 @@ public class PointLoader {
             int y1 = Integer.parseInt(matcher.group(2));
             int x2 = Integer.parseInt(matcher.group(3));
             int y2 = Integer.parseInt(matcher.group(4));
-            Set<Point> linePoints = new HashSet<>();
-
 
             int minX = Math.min(x1, x2);
             int maxX = Math.max(x1, x2);
@@ -35,13 +34,6 @@ public class PointLoader {
             if (x1 != x2 && y1 != y2) {
                 int xDiff = x1 - x2;
                 int yDiff = y1 - y2;
-                System.out.println();
-                System.out.println(minX + "," + minY);
-                System.out.println(maxX + "," + maxY);
-                System.out.println(x1 + "," + x2);
-                System.out.println(y1 + "," + y2);
-                System.out.println("diff: " + xDiff + " - " + yDiff);
-                System.out.println();
 
                 for (int i = 0; i <= Math.abs(yDiff); i++) {
                     int xTemp = x2 + i * (xDiff < 0 ? -1 : 1);
