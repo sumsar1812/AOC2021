@@ -18,9 +18,6 @@ public class DayManager {
 
     public void nextDay() {
         this.day++;
-        if (day % 10 == 0) {
-            System.out.println("day: " + day + " - " + fishMap.size());
-        }
         Map<Integer, Long> tmp = new HashMap<>();
         for (int i = 8; i >= 0; i--) {
             long count = fishMap.getOrDefault(i, 0L);
