@@ -14,6 +14,10 @@ public class GasManager {
         return data.stream().mapToInt(i -> getGas(Math.abs(position -i))).sum();
     }
 
+    public static void main(String[] args) {
+        System.out.println(getGas(10));
+    }
+
     private static int getGas(int moved) {
         if (moved == 0) {
             return 0;

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Day6 extends AOCPuzzle{
-    private final int days;
+    private int days;
     public Day6(String day, int days) throws IOException {
         super(day);
         this.days = days;
@@ -20,6 +20,10 @@ public class Day6 extends AOCPuzzle{
         this.days = days;
     }
 
+    public void setDays(int days) {
+        this.days = days;
+    }
+
     public String solve() {
         FishLoader fishLoader = new FishLoader();
         List<Integer> fishSet = fishLoader.load(getData().get(0));
@@ -31,8 +35,11 @@ public class Day6 extends AOCPuzzle{
     }
 
     public static void main(String[] args) throws IOException {
-        Day6 day6 = new Day6("day6", 256);
-        System.out.printf("Total fish: %s", day6.solve());
+        Day6 day6 = new Day6("day6", 80);
+        System.out.printf("Total fish(1): %s", day6.solve());
+        day6.setDays(256);
+        System.out.printf("Total fish(2): %s", day6.solve());
+
     }
 
 }

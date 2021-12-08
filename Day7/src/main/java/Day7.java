@@ -16,11 +16,6 @@ public class Day7 extends AOCPuzzle{
         this.gasConstant = gasConstant;
     }
 
-    public Day7(String day, String answer, String fileName, boolean gasConstant) throws IOException {
-        super(day, answer, fileName);
-        this.gasConstant = gasConstant;
-    }
-
     public String solve() {
         List<Integer> data = Arrays.stream(getData().get(0).split(","))
                 .map(Integer::parseInt)
